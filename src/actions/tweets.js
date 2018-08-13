@@ -20,7 +20,7 @@ function toggleTweet ({ id, authedUser, hasLiked }) {
 }
 
 export function handleToggleTweet (info) {
-  return (dispatch) {
+  return (dispatch) => {
     dispatch(toggleTweet(info))
 
     return saveLikeToggle(info)
