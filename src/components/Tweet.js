@@ -3,11 +3,18 @@ import { connect } from 'react-redux'
 import { formatTweet, formatDate } from '../utils/helpers'
 
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti'
+import { handleToggleTweet } from '../actions/tweets'
 
 class Tweet extends Component {
   handleLike = (e) => {
     e.preventDefault()
-    // todo: Handle like tweet
+
+    const { dispatch, tweet, authedUser } = this.props
+    dispatch(handleToggleTweet({
+      id: tweet.id,
+      hasLiked: tweet.hasLiked,
+      authedUser
+    }))
   }
 
   toParent = (e, id) => {
@@ -19,7 +26,7 @@ class Tweet extends Component {
     const { tweet } = this.props
 
     if (tweet === null) {
-      return 
+      return
         <p>This tweet doesn't exist. </p>
     }
 
